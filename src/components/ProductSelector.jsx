@@ -24,7 +24,7 @@ const useStyles = makeStyles(() => ({
   },
 }))
 
-const TodoSelector = ({ products, addItem }) => {
+const ProductSelector = ({ products, addItem }) => {
   const [selected, setSelected] = useState(0)
   const styles = useStyles()
 
@@ -67,4 +67,4 @@ const TodoSelector = ({ products, addItem }) => {
   )
 }
 
-export default TodoSelector
+export default ProductSelector
