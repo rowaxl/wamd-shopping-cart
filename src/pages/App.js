@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { Container } from '@material-ui/core'
-import TodoSelector from '../components/TodoSelector'
+import ProductSelector from '../components/ProductSelector'
 import Cart from '../components/Cart'
 import { makeStyles } from '@material-ui/styles'
 
@@ -74,8 +74,6 @@ const App = () => {
     const cartIndex = cartItems.findIndex(item => item.id === target.id)
     const newCartItems = [...cartItems]
 
-    console.log(target)
-
     if (cartIndex > -1) {
       newCartItems[cartIndex].quantity += 1
     } else {
@@ -88,7 +86,7 @@ const App = () => {
   return (
     <Container maxWidth="md">
       <Cart cartItems={cartItems} />
-      <TodoSelector products={products} addItem={handleAddItem} />
+      <ProductSelector products={products} addItem={handleAddItem} />
 
       <footer className={styles.footer}>
         &copy; 2020 wonjae kim
