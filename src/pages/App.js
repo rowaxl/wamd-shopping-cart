@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import { Container } from '@material-ui/core'
 import TodoSelector from '../components/TodoSelector'
 import Cart from '../components/Cart'
+import { makeStyles } from '@material-ui/styles'
 
 const products = [
   {
@@ -51,7 +52,19 @@ const products = [
   }
 ]
 
+
+const useStyles = makeStyles(() => ({
+  footer: {
+    width: '100%',
+    position: 'absolute',
+    bottom: 0,
+    left: 0,
+    textAlign: 'center'
+  }
+}))
+
 const App = () => {
+  const styles = useStyles()
   const [cartItems, setCartItems] = useState([])
 
   const handleAddItem = (itemId) => {
@@ -76,6 +89,10 @@ const App = () => {
     <Container maxWidth="md">
       <Cart cartItems={cartItems} />
       <TodoSelector products={products} addItem={handleAddItem} />
+
+      <footer className={styles.footer}>
+        &copy; 2020 wonjae kim
+      </footer>
     </Container>
   );
 }
