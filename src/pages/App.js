@@ -83,9 +83,21 @@ const App = () => {
     setCartItems(newCartItems)
   }
 
+  const handleDelete = itemId => {
+    const cartIndex = cartItems.findIndex(item => item.id === itemId)
+    const newCartItems = [...cartItems]
+    newCartItems.splice(cartIndex, 1)
+
+    setCartItems(newCartItems)
+  }
+
+  const handleDeleteAll = () => {
+    setCartItems([])
+  }
+
   return (
     <Container maxWidth="md">
-      <Cart cartItems={cartItems} />
+      <Cart cartItems={cartItems} handleDelete={handleDelete} handleDeleteAll={handleDeleteAll} />
       <ProductSelector products={products} addItem={handleAddItem} />
 
       <footer className={styles.footer}>

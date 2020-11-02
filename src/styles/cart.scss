@@ -1,0 +1,30 @@
+$btn-checkout: rgba(39, 171, 39, 0.9);
+$btn-remove:  rgba(225, 50, 44, 0.9);
+
+.btn-delete {
+  & button {
+    color: $btn-remove;
+
+    &:hover {
+      color: lighten($btn-remove, 20%);
+    }
+  }
+}
+
+.btn-remove-all {
+  background: $btn-remove !important;
+  color: #fff !important;
+
+  &:hover {
+    background: lighten($btn-remove, 20%) !important;
+  }
+}
+
+.btn-checkout {
+  background: $btn-checkout !important;
+  color: #fff !important;
+
+  &:hover {
+    background: lighten($btn-checkout, 10%) !important;
+  }
+}

@@ -3,9 +3,16 @@ import {
   List,
   ListItem,
   ListItemText,
-  Typography
+  Typography,
+  ListItemSecondaryAction,
+  IconButton,
+  Button,
 } from '@material-ui/core'
 import { makeStyles } from '@material-ui/styles'
+import {
+  Delete as DeleteIcon
+} from '@material-ui/icons'
+import '../styles/cart.scss'
 
 const useStyles = makeStyles(() => ({
   container: {
@@ -21,7 +28,10 @@ const useStyles = makeStyles(() => ({
     overflowY: 'scroll',
   },
   emptyText: {
-    textAlign: 'center',
+    height: '100%',
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center'
   },
   itemsTexts: {
     width: '33%',
@@ -43,10 +53,22 @@ const useStyles = makeStyles(() => ({
       fontWeight: 900,
       fontSize: '1.2em',
     }
+  },
+  totalWrap: {
+    width: '100%',
+    display: 'flex',
+    marginTop: 10,
+    marginBottom: 10,
+    justifyContent: 'space-between'
+  },
+  checkoutButtonsWrap: {
+    width: 250,
+    display: 'flex',
+    justifyContent: 'space-between'
   }
 }))
 
-const Cart = ({ cartItems }) => {
+const Cart = ({ cartItems, handleDelete, handleDeleteAll }) => {
   const styles = useStyles()
 
   const renderItems = () => 
@@ -55,6 +77,11 @@ const Cart = ({ cartItems }) => {
         <ListItemText className={styles.itemsTexts}>{item.item}</ListItemText>
         <ListItemText className={styles.quantityTexts}>{item.quantity}</ListItemText>
         <ListItemText className={styles.priceTexts}>${(item.quantity * item.price).toFixed(2)}</ListItemText>
+        <ListItemSecondaryAction className="btn-delete">
+          <IconButton edge="end" aria-label="delete" onClick={() => handleDelete(item.id)}>
+            <DeleteIcon />
+          </IconButton>
+        </ListItemSecondaryAction>
       </ListItem>
     ))
 
@@ -91,7 +118,14 @@ const Cart = ({ cartItems }) => {
         }
       </div>
 
-      <Typography align="right" variant="h5">{renderTotal()}</Typography>
+      <div className={styles.totalWrap}>
+        <Typography align="right" variant="h5">{renderTotal()}</Typography>
+
+        <div className={styles.checkoutButtonsWrap}>
+          <Button className="btn-checkout" variant="contained">Checkout</Button>
+          <Button className="btn-remove-all" variant="contained" onClick={handleDeleteAll}>Remove All</Button>
+        </div>
+      </div>
     </div>
   )
 }
