@@ -1,6 +1,6 @@
 # React Class Assignment: Shopping Cart
 
 ## Overview
-![](./overview.png)
+![](./overview1.png)
 
 Simple shopping cart using states
